@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as pitchfinder from "pitchfinder";
+import { withRouter } from "react-router-dom";
+import "./Tuner.css";
 
 const Tuner = (props) => {
   const redirectToHome = () => {
@@ -63,18 +65,26 @@ const Tuner = (props) => {
   }, []);
 
   return (
-    <div>
-      <h1>Music Tuner</h1>
+    <div className="container tuner-container">
+      <h1 className="text-center">NoteFinder</h1>
       {pitch && (
         <div>
-          <p>Detected pitch: {pitch.toFixed(2)} Hz</p>
-          <p>Detected note: {note}</p>
+          <p className="text-center">Detected pitch: {pitch.toFixed(2)} Hz</p>
+          <p className="text-center">Detected note: {note}</p>
         </div>
       )}
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-    <button onClick={redirectToHome}>Home</button>
+      {errorMessage && (
+        <p className="text-center" style={{ color: "red" }}>
+          {errorMessage}
+        </p>
+      )}
+      <div className="text-center">
+        <button className="btn btn-secondary" onClick={redirectToHome}>
+          Back
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Tuner;
+export default withRouter(Tuner);
