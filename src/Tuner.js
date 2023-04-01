@@ -5,7 +5,7 @@ import "./Tuner.css";
 
 const Tuner = (props) => {
   const redirectToHome = () => {
-    props.history.push("/");
+    props.history.push("/welcome");
   };
   const [pitch, setPitch] = useState(null);
   const [note, setNote] = useState("");
