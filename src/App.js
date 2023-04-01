@@ -1,15 +1,19 @@
 import React from "react";
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./Home";
 import Tuner from "./Tuner";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Tuner />
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/tuner" component={Tuner} />
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

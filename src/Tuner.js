@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as pitchfinder from "pitchfinder";
 
-const Tuner = () => {
+const Tuner = (props) => {
+  const redirectToHome = () => {
+    props.history.push("/");
+  };
   const [pitch, setPitch] = useState(null);
   const [note, setNote] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isMounted, setIsMounted] = useState(false);
 
   const frequencyToNote = (frequency) => {
     const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -17,15 +19,10 @@ const Tuner = () => {
   };
 
   useEffect(() => {
-    if (isMounted) {
-      return;
-    }
-    setIsMounted(true);
-
+    const detectPitch = new pitchfinder.YIN();
     let audioContext;
     let analyser;
     let micStream;
-    const detectPitch = new pitchfinder.YIN();
 
     const startListening = async () => {
       try {
@@ -44,27 +41,26 @@ const Tuner = () => {
       }
     };
 
-    const stopListening = () => {
-      if (micStream) {
-        micStream.mediaStream.getTracks()[0].stop();
-      }
-    };
-
     const updatePitch = (inputBuffer) => {
       analyser.getFloatTimeDomainData(inputBuffer);
       const detectedPitch = detectPitch(inputBuffer, audioContext.sampleRate);
       if (detectedPitch) {
-        console.log("Detected pitch:", detectedPitch); // Add this line for debugging
         setPitch(detectedPitch);
         setNote(frequencyToNote(detectedPitch));
       }
       requestAnimationFrame(() => updatePitch(inputBuffer));
     };
 
+
+
     startListening();
 
-    return () => stopListening();
-  }, [isMounted]);
+    return () => {
+      if (micStream) {
+        micStream.mediaStream.getTracks()[0].stop();
+      }
+    };
+  }, []);
 
   return (
     <div>
@@ -76,6 +72,7 @@ const Tuner = () => {
         </div>
       )}
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+    <button onClick={redirectToHome}>Home</button>
     </div>
   );
 };
