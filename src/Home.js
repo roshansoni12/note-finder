@@ -26,7 +26,7 @@ const Home = (props) => {
 
   return (
     <div className="container home-container">
-      <h1 className="text-center">Welcome to the Music Tuner</h1>
+      <h1 className="text-center">Log Into Note Finder</h1>
       <form onSubmit={handleLogin}>
         <div className="form-group">
           <label htmlFor="email">Email address:</label>

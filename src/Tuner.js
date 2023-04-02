@@ -12,14 +12,14 @@ const Tuner = (props) => {
   const [note, setNote] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const frequencyToNote = (frequency) => {
-    const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-    const semitoneIndex = Math.round(12 * (Math.log(frequency / 440) / Math.log(2)));
-    const octave = Math.floor(semitoneIndex / 12) + 4;
-    const noteIndex = (semitoneIndex + 120) % 12;
+const frequencyToNote = (frequency) => {
+  const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  const semitoneIndex = Math.round(12 * (Math.log(frequency / 480) / Math.log(2)));
+  const octave = Math.floor(semitoneIndex / 12) + 4;
+  const noteIndex = (semitoneIndex + 120) % 12;
 
-    return noteNames[noteIndex] + octave;
-  };
+  return noteNames[noteIndex] + octave;
+};
 
   useEffect(() => {
     const detectPitch = new pitchfinder.YIN();

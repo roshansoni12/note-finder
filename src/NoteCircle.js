@@ -3,7 +3,7 @@ import "./NoteCircle.css";
 
 const NoteCircle = ({ currentNote }) => {
   const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-  const radius = 160;
+  const radius = 120;
   const centerX = 160;
   const centerY = 160;
 
@@ -32,6 +32,7 @@ const NoteCircle = ({ currentNote }) => {
           </div>
         );
       })}
+      <div className="note-circle-center">{currentNote}</div>
     </div>
   );
 };
