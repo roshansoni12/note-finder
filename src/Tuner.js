@@ -5,7 +5,7 @@ import "./Tuner.css";
 
 const Tuner = (props) => {
   const redirectToHome = () => {
-    props.history.push("/");
+    props.history.push("/welcome");
   };
   const [pitch, setPitch] = useState(null);
   const [note, setNote] = useState("");
@@ -69,7 +69,6 @@ const Tuner = (props) => {
       <h1 className="text-center">NoteFinder</h1>
       {pitch && (
         <div>
-          <p className="text-center">Detected pitch: {pitch.toFixed(2)} Hz</p>
           <p className="text-center">Detected note: {note}</p>
         </div>
       )}
