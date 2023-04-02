@@ -1,0 +1,19 @@
+.note-circle {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.note {
+  position: absolute;
+  width: 400px;
+  text-align: center;
+  font-weight: bold;
+  user-select: none;
+  transform-origin: center center;
+}
+
+.current-note {
+  font-size: 1.5em;
+  color: #007bff;
+}

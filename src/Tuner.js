@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as pitchfinder from "pitchfinder";
 import { withRouter } from "react-router-dom";
+import NoteCircle from "./NoteCircle";
 import "./Tuner.css";
 
 const Tuner = (props) => {
@@ -53,8 +54,6 @@ const Tuner = (props) => {
       requestAnimationFrame(() => updatePitch(inputBuffer));
     };
 
-
-
     startListening();
 
     return () => {
@@ -67,11 +66,7 @@ const Tuner = (props) => {
   return (
     <div className="container tuner-container">
       <h1 className="text-center">NoteFinder</h1>
-      {pitch && (
-        <div>
-          <p className="text-center">Detected note: {note}</p>
-        </div>
-      )}
+      {pitch && <NoteCircle currentNote={note.replace(/\d+$/, "")} />}
       {errorMessage && (
         <p className="text-center" style={{ color: "red" }}>
           {errorMessage}
