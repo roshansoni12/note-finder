@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Route } from "react-router-dom";
 import { auth } from "./firebase";
 
 const Welcome = () => {
@@ -7,7 +7,9 @@ const Welcome = () => {
   const history = useHistory();
 
   useEffect(() => {
+    console.log("point A")
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log(user)
       if (user) {
         setDisplayName(user.displayName);
       }
@@ -26,7 +28,7 @@ const Welcome = () => {
       console.error("Error logging out:", err);
     }
   };
-
+console.log(displayName);
   return (
     <div className="container">
       <h1 className="text-center">Welcome {displayName}</h1>
@@ -37,6 +39,9 @@ const Welcome = () => {
         <button className="btn btn-danger" onClick={handleLogout}>
           Logout
         </button>
+        <Link to="/settings" className="btn btn-secondary">
+          Settings
+        </Link>
       </div>
     </div>
   );
