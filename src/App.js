@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import Home from "./Home";
-import Tuner from "./Tuner";
-import Signup from "./Signup";
-import Welcome from "./Welcome";
+import Home from "./pages/Home";
+import Tuner from "./pages/Tuner";
+import Signup from "./pages/Signup";
+import Welcome from "./pages/Welcome";
 import { auth } from "./firebase";
 
 const App = () => {
