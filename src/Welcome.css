@@ -1,0 +1,48 @@
+.button-container {
+    margin-top: 2rem;
+  }
+  
+  .begin-button {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s;
+  }
+  
+  .begin-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+  
+  .begin-button:hover:before {
+    transform: translateX(100%);
+  }
+  
+  .logout-button,
+  .settings-button {
+    font-size: 1.5rem;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .logout-button:hover,
+  .settings-button:hover {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  

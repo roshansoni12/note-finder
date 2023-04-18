@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, Link, Route } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { auth } from "./firebase";
+import "./Welcome.css";
 
 const Welcome = () => {
   const [displayName, setDisplayName] = useState("");
   const history = useHistory();
 
   useEffect(() => {
-    console.log("point A")
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      console.log(user)
       if (user) {
         setDisplayName(user.displayName);
       }
@@ -28,19 +27,23 @@ const Welcome = () => {
       console.error("Error logging out:", err);
     }
   };
-console.log(displayName);
+
   return (
     <div className="container">
-      <h1 className="text-center">Welcome {displayName}</h1>
-      <div className="text-center">
-        <Link to="/tuner" className="btn btn-primary">
+      <nav className="navbar navbar-expand navbar-light bg-light">
+        <span className="navbar-brand mx-auto">Welcome {displayName}</span>
+        <div className="navbar-nav ml-auto">
+          <button className="btn btn-link nav-link logout-button" onClick={handleLogout} title="Logout">
+            <i className="fa fa-sign-out" aria-hidden="true"></i>
+          </button>
+          <Link to="/settings" className="btn btn-link nav-link settings-button" title="Settings">
+            <i className="fa fa-cog" aria-hidden="true"></i>
+          </Link>
+        </div>
+      </nav>
+      <div className="button-container text-center">
+        <Link to="/tuner" className="btn btn-primary begin-button">
           Begin
-        </Link>
-        <button className="btn btn-danger" onClick={handleLogout}>
-          Logout
-        </button>
-        <Link to="/settings" className="btn btn-secondary">
-          Settings
         </Link>
       </div>
     </div>
