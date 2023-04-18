@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "./firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import "./Signup.css";
 
@@ -22,15 +22,19 @@ function Signup(props) {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      await userCredential.user.updateProfile({ displayName: username }); // Update the user's display name
+      await updateProfile(userCredential.user, { displayName: username });
       await setDoc(doc(db, "users", userCredential.user.uid), {
         username: username,
       });
+      // Sign the user out immediately after signing up
+      await auth.signOut();
       props.history.push("/");
     } catch (err) {
+      console.error(err)
       setError(err.message);
     }
   };
+
 
 
   return (
@@ -39,7 +43,7 @@ function Signup(props) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Name"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />

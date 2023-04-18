@@ -5,6 +5,7 @@ import Tuner from "./Tuner";
 import Signup from "./Signup";
 import Welcome from "./Welcome";
 import { auth } from "./firebase";
+import Settings from "./Settings";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -23,6 +24,7 @@ const App = () => {
     };
   }, []);
 
+
   return (
     <Router>
       <div>
@@ -31,6 +33,7 @@ const App = () => {
             <Route path="/welcome" component={Welcome} />
             <Route path="/tuner" component={Tuner} />
             <Redirect to="/welcome" />
+            <Route path="/settings" component={Settings} />
           </>
         ) : (
           <>

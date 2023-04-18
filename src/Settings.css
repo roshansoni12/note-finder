@@ -1,0 +1,16 @@
+.Settings {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Settings h2 {
+  margin-bottom: 1.5rem;
+}
+
+.Settings h5 {
+  margin-bottom: 0.5rem;
+}
+
+.Settings p {
+  margin-bottom: 1rem;
+}

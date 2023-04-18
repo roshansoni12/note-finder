@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as pitchfinder from "pitchfinder";
 import { withRouter } from "react-router-dom";
+import NoteCircle from "./NoteCircle";
 import "./Tuner.css";
 
 const Tuner = (props) => {
@@ -11,14 +12,14 @@ const Tuner = (props) => {
   const [note, setNote] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const frequencyToNote = (frequency) => {
-    const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-    const semitoneIndex = Math.round(12 * (Math.log(frequency / 440) / Math.log(2)));
-    const octave = Math.floor(semitoneIndex / 12) + 4;
-    const noteIndex = (semitoneIndex + 120) % 12;
+const frequencyToNote = (frequency) => {
+  const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  const semitoneIndex = Math.round(12 * (Math.log(frequency / 480) / Math.log(2)));
+  const octave = Math.floor(semitoneIndex / 12) + 4;
+  const noteIndex = (semitoneIndex + 120) % 12;
 
-    return noteNames[noteIndex] + octave;
-  };
+  return noteNames[noteIndex] + octave;
+};
 
   useEffect(() => {
     const detectPitch = new pitchfinder.YIN();
@@ -53,8 +54,6 @@ const Tuner = (props) => {
       requestAnimationFrame(() => updatePitch(inputBuffer));
     };
 
-
-
     startListening();
 
     return () => {
@@ -67,11 +66,7 @@ const Tuner = (props) => {
   return (
     <div className="container tuner-container">
       <h1 className="text-center">NoteFinder</h1>
-      {pitch && (
-        <div>
-          <p className="text-center">Detected note: {note}</p>
-        </div>
-      )}
+      {pitch && <NoteCircle currentNote={note.replace(/\d+$/, "")} />}
       {errorMessage && (
         <p className="text-center" style={{ color: "red" }}>
           {errorMessage}
