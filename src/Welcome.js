@@ -6,6 +6,7 @@ import "./Welcome.css";
 const Welcome = () => {
   const [displayName, setDisplayName] = useState("");
   const history = useHistory();
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -28,6 +29,10 @@ const Welcome = () => {
     }
   };
 
+  const changeBackground = (instrument) => {
+    setBackgroundImage(`url(/images/${instrument}.jpg)`);
+  };
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand navbar-light bg-light">
@@ -42,6 +47,18 @@ const Welcome = () => {
         </div>
       </nav>
       <div className="button-container text-center">
+        <button onClick={() => changeBackground("piano")} className="btn btn-primary instrument-button">
+          Piano
+        </button>
+        <button onClick={() => changeBackground("guitar")} className="btn btn-primary instrument-button">
+          Guitar
+        </button>
+        <button onClick={() => changeBackground("violin")} className="btn btn-primary instrument-button">
+          Violin
+        </button>
+        <button onClick={() => changeBackground("saxophone")} className="btn btn-primary instrument-button">
+          Saxophone
+        </button>
         <Link to="/tuner" className="btn btn-primary begin-button">
           Begin
         </Link>

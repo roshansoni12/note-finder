@@ -46,3 +46,14 @@
     transform: translateX(-50%);
   }
   
+  .instrument-button {
+    margin: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
