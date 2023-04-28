@@ -10,15 +10,15 @@ const Home = (props) => {
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    props.history.push("/welcome");
-  } catch (err) {
-    setError(err.message);
-  }
-};
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      props.history.push("/welcome");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   const redirectToSignup = () => {
     props.history.push("/signup");

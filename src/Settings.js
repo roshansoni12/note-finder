@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./Settings.css";
 
 const Settings = () => {
@@ -94,6 +94,11 @@ const Settings = () => {
           </div>
         </>
       )}
+      <div className="text-center">
+        <Link to="/welcome" className="btn btn-primary">
+          Go Back
+        </Link>
+      </div>
     </div>
   );
 };
